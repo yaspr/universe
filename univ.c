@@ -74,7 +74,7 @@ char getch()
   return c;
 }
 
-//Generates a random int between in [x, y]
+//Generates a random int in [x, y]
 int randxy(int x, int y)
 { return (x + rand()) % y; }
 
@@ -94,8 +94,11 @@ void gen_crater(universe *u, char c, int x, int y, int r)
   for (int i = 1; i <= r; i++)
     {
       u->grid[(y + i) % (MAX_LIN - 1)][x] = SPACE;
+	  
       if (x - i > 0) u->grid[y][x - i] = SPACE;  
+      
       u->grid[y][(x + i) % (MAX_COL - 1)] = SPACE; 
+      
       if (y - i > 0) u->grid[y - i][x] = SPACE;			     
     }
 }
@@ -115,7 +118,7 @@ void drop_bombs(universe *u, int n)
     }
 }
 
-//Generates a grid and places key the elements randomly 
+//Generates a grid and places key elements randomly 
 universe *gen_universe(int lines, int cols)
 {
   int x, y, r;
